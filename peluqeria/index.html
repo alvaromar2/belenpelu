@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Belu Peluquería</title>
+</head>
+<body>
+    
+    <header>
+        <h1>Belu Peluquería Estética</h1>
+        <nav>
+            <ul>
+                <li><a href="#clientes">Clientes</a></li>
+                <li><a href="#agenda">Agenda</a></li>
+                <li><a href="#precios">Precios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="clientes">
+            <h2>Ficha Personal de Clientes</h2>
+            <form id="clientform" action="cliente.php" method="post">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" required>
+
+                <label for="email">Email:</label>
+                <input type="email" name="email" required>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" name="telefono" required>
+
+                <label for="servicios">Servicios Solicitados:</label>
+                <textarea name="servicios" required></textarea>
+                
+                <button type="submit">Agregar Clienta</button>
+            </form>
+            <div id="clientlist">
+                <h3>Lista de Clientes</h3>
+                <ul id="clientU1">
+                    <!-- Ejemplo de elemento de cliente con botones de modificar y eliminar -->
+                    <li>
+                        <span>Nombre del Cliente</span>
+                        <button class="modify-btn" onclick="modificarCliente()">Modificar</button>
+                        <button class="delete-btn" onclick="eliminarCliente()">Eliminar</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="agenda">
+            <h2>Agenda de Turnos</h2>
+            <form id="turnoform" action="turno.php" method="post">
+                <label for="cliente">Cliente:</label>
+                <input type="text" name="cliente" required>
+
+                <label for="fecha">Fecha:</label>
+                <input type="date" name="fecha" required>
+
+                <label for="hora">Hora:</label>
+                <input type="time" name="hora" required>
+
+                <button type="submit">Agregar Turno</button>
+            </form>
+
+            <div id="turnolist">
+                <h3>Turnos Agendados</h3>
+                <ul id="turnoU1">
+                    <!-- Ejemplo de elemento de turno con botones de modificar y eliminar -->
+                    <li>
+                        <span>Cliente - Fecha - Hora</span>
+                        <button class="modify-btn" onclick="modificarTurno()">Modificar</button>
+                        <button class="delete-btn" onclick="eliminarTurno()">Eliminar</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="precios">
+            <h2>Lista de Precios</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto/Servicio</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Corte de Cabello</td>
+                        <td>$xxx</td>
+                    </tr>
+                    <tr>
+                        <td>Peinado</td>
+                        <td>$xxx</td>
+                    </tr>
+                    <tr>
+                        <td>Coloración</td>
+                        <td>$xxx</td>
+                    </tr>
+                    <tr>
+                        <td>Peinado especial</td>
+                        <td>$xxx</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer id="contacto"> 
+        <h2>Contacto</h2>
+        <p>Teléfono: +54 3564 xxxx-xxxx</p>
+        <p>Dirección: Lamadrid Norte 4056</p>
+    </footer>
+</body>
+</html>
