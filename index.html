@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belu Peluquería</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Belu Peluquería Estética</h1>
+      <nav>
+        <ul>
+          <li><a href="#clientes">Clientes</a></li>
+          <li><a href="#agenda">Agenda</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="clientes">
+        <h2>Ficha Personal de Clientes</h2>
+        <div class="form-table-container">
+          <form id="clientform">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" required />
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" />
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" name="telefono" required />
+
+            <label for="servicios">Servicios Solicitados:</label>
+            <textarea name="servicios" required></textarea>
+
+            <button type="submit">Agregar Clienta</button>
+          </form>
+
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Servicios</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="clientTableBody">
+              <!-- Contenido dinámico de clientes -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="agenda">
+        <h2>Agenda de Turnos</h2>
+        <div class="form-table-container">
+          <form id="turnoform">
+            <label for="cliente">Cliente:</label>
+            <input type="text" name="cliente" required />
+
+            <label for="fecha">Fecha:</label>
+            <input type="date" name="fecha" required />
+
+            <label for="hora">Hora:</label>
+            <input type="time" name="hora" required />
+
+            <button type="submit">Agregar Turno</button>
+          </form>
+
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="turnoTableBody">
+              <!-- Contenido dinámico de turnos -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="precios">
+        <h2>Lista de Precios</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Producto/Servicio</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Corte de Cabello</td>
+              <td>$xxx</td>
+            </tr>
+            <tr>
+              <td>Peinado</td>
+              <td>$xxx</td>
+            </tr>
+            <tr>
+              <td>Coloración</td>
+              <td>$xxx</td>
+            </tr>
+            <tr>
+              <td>Peinado especial</td>
+              <td>$xxx</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer id="contacto">
+      <h2>Contacto</h2>
+      <p>Teléfono: +54 3564 xxxx-xxxx</p>
+      <p>Dirección: Lamadrid Norte 4056</p>
+    </footer>
+
+    <script>
+      function obtenerClientes() {
+        return JSON.parse(localStorage.getItem("clientes")) || [];
+      }
+
+      function guardarClientes(clientes) {
+        localStorage.setItem("clientes", JSON.stringify(clientes));
+      }
+
+      function agregarCliente(event) {
+        event.preventDefault();
+        const nombre = document.querySelector('[name="nombre"]').value;
+        const email = document.querySelector('[name="email"]').value;
+        const telefono = document.querySelector('[name="telefono"]').value;
+        const servicios = document.querySelector('[name="servicios"]').value;
+
+        const clientes = obtenerClientes();
+        clientes.push({ nombre, email, telefono, servicios });
+        guardarClientes(clientes);
+        mostrarClientes();
+        document.getElementById("clientform").reset();
+      }
+
+      function mostrarClientes() {
+        const clientes = obtenerClientes();
+        const clientTableBody = document.getElementById("clientTableBody");
+        clientTableBody.innerHTML = "";
+
+        clientes.forEach((cliente, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${cliente.nombre}</td>
+                    <td>${cliente.email}</td>
+                    <td>${cliente.telefono}</td>
+                    <td>${cliente.servicios}</td>
+                    <td>
+                        <button onclick="modificarCliente(${index})">Modificar</button>
+                        <button onclick="eliminarCliente(${index})">Eliminar</button>
+                    </td>
+                `;
+          clientTableBody.appendChild(row);
+        });
+      }
+
+      function eliminarCliente(index) {
+        const clientes = obtenerClientes();
+        clientes.splice(index, 1);
+        guardarClientes(clientes);
+        mostrarClientes();
+      }
+
+      function modificarCliente(index) {
+        const clientes = obtenerClientes();
+        const cliente = clientes[index];
+        document.querySelector('[name="nombre"]').value = cliente.nombre;
+        document.querySelector('[name="email"]').value = cliente.email;
+        document.querySelector('[name="telefono"]').value = cliente.telefono;
+        document.querySelector('[name="servicios"]').value = cliente.servicios;
+
+        eliminarCliente(index);
+      }
+
+      document
+        .getElementById("clientform")
+        .addEventListener("submit", agregarCliente);
+      mostrarClientes();
+
+      function obtenerTurnos() {
+        return JSON.parse(localStorage.getItem("turnos")) || [];
+      }
+
+      function guardarTurnos(turnos) {
+        localStorage.setItem("turnos", JSON.stringify(turnos));
+      }
+
+      function agregarTurno(event) {
+        event.preventDefault();
+        const cliente = document.querySelector('[name="cliente"]').value;
+        const fecha = document.querySelector('[name="fecha"]').value;
+        const hora = document.querySelector('[name="hora"]').value;
+
+        const turnos = obtenerTurnos();
+        turnos.push({ cliente, fecha, hora });
+        guardarTurnos(turnos);
+        mostrarTurnos();
+        document.getElementById("turnoform").reset();
+      }
+
+      function mostrarTurnos() {
+        const turnos = obtenerTurnos();
+        const turnoTableBody = document.getElementById("turnoTableBody");
+        turnoTableBody.innerHTML = "";
+
+        turnos.forEach((turno, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${turno.cliente}</td>
+                    <td>${turno.fecha}</td>
+                    <td>${turno.hora}</td>
+                    <td>
+                        <button onclick="modificarTurno(${index})">Modificar</button>
+                        <button onclick="eliminarTurno(${index})">Eliminar</button>
+                    </td>
+                `;
+          turnoTableBody.appendChild(row);
+        });
+      }
+
+      function eliminarTurno(index) {
+        const turnos = obtenerTurnos();
+        turnos.splice(index, 1);
+        guardarTurnos(turnos);
+        mostrarTurnos();
+      }
+
+      function modificarTurno(index) {
+        const turnos = obtenerTurnos();
+        const turno = turnos[index];
+        document.querySelector('[name="cliente"]').value = turno.cliente;
+        document.querySelector('[name="fecha"]').value = turno.fecha;
+        document.querySelector('[name="hora"]').value = turno.hora;
+
+        eliminarTurno(index);
+      }
+
+      document
+        .getElementById("turnoform")
+        .addEventListener("submit", agregarTurno);
+      mostrarTurnos();
+    </script>
+  </body>
+</html>

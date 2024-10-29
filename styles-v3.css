@@ -1,0 +1,119 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+
+header h1 {
+  text-align: center;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+.form-table-container {
+  display: flex;
+  align-items: flex-start; /* Alinea el contenido al principio del contenedor */
+  margin-bottom: 20px; /* Espacio entre secciones */
+}
+
+.form-container {
+  flex: 0 0 40%; /* Ocupa el 40% del ancho disponible */
+  margin-right: 20px; /* Espacio entre el formulario y la tabla */
+  background-color: #fff; /* Fondo blanco para el formulario */
+  padding: 20px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.table-container {
+  flex: 1; /* Ocupa el resto del espacio disponible */
+  background-color: #fff; /* Fondo blanco para la tabla */
+  padding: 20px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+form {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en columna */
+}
+
+label {
+  margin-bottom: 5px; /* Espacio entre la etiqueta y el campo */
+}
+
+input,
+textarea,
+select {
+  padding: 10px; /* Espacio interno */
+  margin-bottom: 15px; /* Espacio entre campos */
+  border: 1px solid #ccc; /* Borde suave */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+button {
+  background-color: #333; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  padding: 10px; /* Espacio interno */
+  border: none; /* Sin borde */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+button:hover {
+  background-color: #555; /* Color de fondo al pasar el mouse */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Colapsa los bordes */
+}
+
+th,
+td {
+  padding: 10px; /* Espaciado interno */
+  text-align: left; /* Alinea el texto a la izquierda */
+  border-bottom: 1px solid #ccc; /* Borde inferior */
+}
+
+th {
+  background-color: #ddd; /* Fondo gris claro para el encabezado */
+}
+
+footer {
+  text-align: center; /* Centra el texto del pie de página */
+  padding: 10px 0; /* Espaciado interno */
+  background-color: #333; /* Color de fondo del pie de página */
+  color: #fff; /* Color del texto del pie de página */
+}
