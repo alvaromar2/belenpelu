@@ -117,3 +117,14 @@ footer {
   background-color: #f1a7c3; /* Rosa claro en lugar de negro */
   color: #fff; /* Color del texto del pie de página */
 }
+.loco-chiquito {
+  background-color: #f78ca3; /* Rosa claro para que combine con el tema */
+  color: #fff;
+  text-align: center;
+  font-size: 24px; /* Tamaño grande para destacarlo */
+  padding: 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para darle más visibilidad */
+  position: relative; /* Para que quede encima del header */
+  z-index: 1000; /* Para asegurarse de que esté por encima del header */
+}
